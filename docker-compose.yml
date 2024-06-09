@@ -1,0 +1,29 @@
+version: '3.8'
+services:
+  local_database:
+    command: "-jar DynamoDBLocal.jar -sharedDb -dbPath ./data"
+    image: amazon/dynamodb-local:latest
+    volumes:
+      - "./docker/dynamodb:/home/dynamodblocal/data"
+    working_dir: /home/dynamodblocal
+    ports:
+      - "8000:8000"
+
+  application:
+    image: java-app
+    build:
+      context: .
+    container_name: java-app-container
+    environment:
+      SPRING_PROFILES_ACTIVE: local
+      AWS_ACCESS_KEY_ID: 'DUMMYID'
+      AWS_SECRET_ACCESS_KEY: 'DUMMYKEY'
+    ports:
+      - "8080:8080"
+    volumes:
+      - ./init.sh:/init.sh
+    depends_on:
+      - local_database
+    links:
+      - local_database
+    entrypoint: /init.sh

@@ -34,13 +34,4 @@ public class ProductController {
             return ResponseEntity.notFound().build();
         }
     }
-
-    @GetMapping("/test-dynamodb")
-    public String testDynamoDBConnection() {
-        try {
-            return "Tables: " + amazonDynamoDB.listTables().getTableNames();
-        } catch (Exception e) {
-            return "Error: " + e.getMessage();
-        }
-    }
 }
