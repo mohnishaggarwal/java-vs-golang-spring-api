@@ -15,7 +15,7 @@ public class ProductRepository {
         this.dynamoDBMapper = dynamoDBMapper;
     }
 
-    public void updateProduct(Product product) {
+    public void addOrUpdateProduct(Product product) {
         dynamoDBMapper.save(product);
     }
 

@@ -19,10 +19,17 @@ public class ProductController {
         this.amazonDynamoDB = amazonDynamoDB;
     }
 
-    @PutMapping("/update")
-    public ResponseEntity<String> updateProduct(@RequestBody Product product) {
-        productRepository.updateProduct(product);
+    @PutMapping("/{id}")
+    public ResponseEntity<String> updateProduct(@PathVariable String id, @RequestBody Product product) {
+        product.setId(id);
+        productRepository.addOrUpdateProduct(product);
         return ResponseEntity.ok("Product updated successfully");
+    }
+
+    @PostMapping
+    public ResponseEntity<String> addProduct(@RequestBody Product product) {
+        productRepository.addOrUpdateProduct(product);
+        return ResponseEntity.ok("Product added successfully");
     }
 
     @GetMapping("/{id}")

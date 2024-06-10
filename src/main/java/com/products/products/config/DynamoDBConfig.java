@@ -22,7 +22,7 @@ public class DynamoDBConfig {
         String region = env.getProperty("region");
         if (isLocal()) {
             return AmazonDynamoDBClientBuilder.standard()
-                    .withEndpointConfiguration(new AwsClientBuilder.EndpointConfiguration("http://local_database:8000", region))
+                    .withEndpointConfiguration(new AwsClientBuilder.EndpointConfiguration("http://dynamodb-local:8000", region))
                     .build();
         } else {
             return AmazonDynamoDBClientBuilder.standard()
