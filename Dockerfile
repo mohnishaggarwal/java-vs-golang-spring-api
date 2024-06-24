@@ -9,5 +9,4 @@ RUN apk update && \
 WORKDIR /app
 COPY --from=build /app/target/*.jar /app/app.jar
 EXPOSE 8080
-ENV SPRING_PROFILES_ACTIVE=local
 ENTRYPOINT ["java","-jar","/app/app.jar"]

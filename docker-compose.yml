@@ -26,6 +26,4 @@ services:
       - ./init.sh:/init.sh
     depends_on:
       - dynamodb-local
-    links:
-      - dynamodb-local
     entrypoint: /init.sh
