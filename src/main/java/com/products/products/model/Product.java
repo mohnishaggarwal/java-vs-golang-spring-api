@@ -4,7 +4,7 @@ import com.amazonaws.services.dynamodbv2.datamodeling.DynamoDBHashKey;
 import com.amazonaws.services.dynamodbv2.datamodeling.DynamoDBTable;
 import com.amazonaws.services.dynamodbv2.datamodeling.DynamoDBAttribute;
 
-@DynamoDBTable(tableName = "Products")
+@DynamoDBTable(tableName = "javaservice_products_table")
 public class Product {
     private String id;
     private String name;

@@ -2,6 +2,7 @@ package com.products.products.controller;
 
 import com.amazonaws.services.dynamodbv2.AmazonDynamoDB;
 import com.products.products.model.Product;
+import com.products.products.model.ProductOutput;
 import com.products.products.repository.ProductRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -33,8 +34,8 @@ public class ProductController {
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<Product> getProductById(@PathVariable String id) {
-        Product product = productRepository.getProductById(id);
+    public ResponseEntity<ProductOutput> getProductById(@PathVariable String id) {
+        ProductOutput product = productRepository.getProductById(id);
         if (product != null) {
             return ResponseEntity.ok(product);
         } else {

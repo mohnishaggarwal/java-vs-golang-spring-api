@@ -1,7 +1,10 @@
-FROM maven:3.9.6-amazoncorretto-21 as build
+FROM amazoncorretto:21-alpine AS build
 WORKDIR /app
-COPY . .
-RUN ./mvnw clean package -DskipTests
+RUN apk add --no-cache maven
+COPY pom.xml ./
+RUN mvn dependency:go-offline -B
+COPY src ./src
+RUN mvn package -DskipTests
 
 FROM alpine:latest
 RUN apk update && \
