@@ -22,6 +22,7 @@ public class ProductRepository {
 
     public ProductOutput getProductById(String id) {
         Product product = dynamoDBMapper.load(Product.class, id);
+        if (product == null) { return null; }
         return transformToProductOutput(product);
     }
 
